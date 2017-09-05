@@ -23,15 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'p7%p#(%i8!8e8+^ti-!%m+r#ym07-gqb9857np=3h##s_25eyv'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-DEBUG = False
+
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+
 
 
 # Application definition
@@ -147,4 +143,13 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
+# SECURITY WARNING: don't run with debug turned on in production!
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
